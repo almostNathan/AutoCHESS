@@ -14,6 +14,7 @@ class Scene{
     }
 
 
+    //initialize the canvas
     start(){
         this.canvas = document.createElement("canvas")
         this.canvas.style.backgroundColor = "grey"
@@ -26,6 +27,8 @@ class Scene{
 
         //set framerate
         this.interval = setInterval(localUpdate, 50)
+
+        /*OLD STUFF
         //Set up key press function
         document.onkeydown = this.updateKeys
         //Set up key release function
@@ -33,10 +36,6 @@ class Scene{
         //initialize keysDown Array
 
         //Set up mouse movement function
-        document.onmousemove = function(e){
-            this.mouseX = e.pageX
-            this.mouseY = e.pageY
-        }
         //set up mouse clicking functions
         document.mouseClicked = false
         document.onmousedown = function(){
@@ -47,9 +46,15 @@ class Scene{
             this.mouseDown = false
             this.mouseClicked = false
         }
+        end OLD STUFF*/
+    }
 
+    addSprite(sprite){
+        this.sprites.push(sprite)
+    }//end addSprite
 
-
+    get getSprites(){
+        return this.sprites
     }
     //stop updating 
     stop(){
@@ -69,6 +74,7 @@ class Scene{
         this.canvas.style.cursor = "default"
     }//end cursor
 
+    /*OLD FUNCTIONS
     //sets all key values to false
     initKeys(){
         this.currentKey = null
@@ -91,14 +97,8 @@ class Scene{
         keysDown[e.keyCode] = false
     }//end clearKeys
 
+    end OLD FUNCTIONS*/
 
-    addSprite(sprite){
-        this.sprites.push(sprite)
-    }//end addSprite
-
-    getSprites(){
-        return this.sprites
-    }
 
 
 
@@ -107,5 +107,3 @@ class Scene{
 function localUpdate(){
         updateScene()
     }
-
-let keysDown = []

@@ -1,6 +1,5 @@
 //Nathan Allen
 //AUTOCHESS
-//Final Project CSCI 43700-25633
 class Sprite{
 
     constructor(width, height, image, scene){
@@ -19,11 +18,12 @@ class Sprite{
         this.scene = scene
         this.boundAction = null
         this.visible = true
-        this.delete = false
 
     }//end constructor
 
+
     //function to draw sprite if visible
+    //draw picture CENTERED on sprite position
     draw(){
         if (this.visible == true){
             let context = this.scene.context 
@@ -37,7 +37,11 @@ class Sprite{
 
     }//end draw
 
-    //update position of sprite
+
+    //updates the current position of the sprite
+    //add acceleration to speed
+    //add speed to position
+    
     update(){
         //increase speed by acceleration
         this.compSpeed.dx += this.compAccel.ddx
@@ -49,6 +53,46 @@ class Sprite{
 
     }//end update
 
+    //checks if the mouse was clicked on this sprite
+    //parameter
+    //  click : {x:mouseX, y:mouseY} || object with mouse x/y position
+    //return
+    //  boolean : true if mouse clicked on this sprite
+    isClicked(click){
+        let left = this.xPos - this.width/2
+        let right = this.xPos + this.width/2
+        let top = this.yPos - this.height/2
+        let bot = this.yPos + this.height/2
+
+        //if mouse is NOT clicked on this piece
+        if (click.x > right || click.x < left || click.y < top || click.y > bot){
+            return false
+        }else {
+            return true
+        }
+    }//end isClicked
+
+    //POSITION set/get
+    set setXPos(x){
+        this.xPos = x
+    }
+    set setYPos(y){
+        this.yPos = y
+    }
+    set setPos(position){
+        this.xPos = position.x
+        this.yPos = position.y
+        this.center = {x:this.xPos, y:this.yPos}
+    }
+    get getXPos(){
+        return this.xPos
+    }
+    get getYPos(){
+        return this.yPos
+    }
+    //end Position set/get
+
+/* old functions
     //get compoent dx/dy from speed/angle
     //return object {dx:#, dy:#}
     vectProject(speed, angle){
@@ -67,10 +111,6 @@ class Sprite{
         this.compSpeed.dy += newForce.dy
     }//end addForce
 
-    //idea - change how player/enemy bullets work
-    setBoundAction(action){
-        this.boundAction = action
-    }//end setBoundAction
 
     //check if parameter sprite is colliding with this sprite
     collidesWith(otherObject){
@@ -165,65 +205,37 @@ class Sprite{
         this.visible = true
     }
 
-    //delete status get
-    getDeleteStatus(){
-        return this.delete
-    }
 
-    //POSITION set/get
-    setXPos(x){
-        this.xPos = x
-    }
-    setYPos(y){
-        this.yPos = y
-    }
-    setPos(position){
-        this.xPos = position.x
-        this.yPos = position.y
-        this.center = {x:this.xPos, y:this.yPos}
-    }
-    getXPos(){
-        return this.xPos
-    }
-    getYPos(){
-        return this.yPos
-    }
+   
     
     //SPEED set/get
-    setSpeed(newSpeed){
+    set setSpeed(newSpeed){
         this.speed = newSpeed
     }
-    setXSpeed(newXSpeed){
+    set setXSpeed(newXSpeed){
         this.compSpeed.dx = newXSpeed
     }
-    setYSpeed(newYSpeed){
+    set setYSpeed(newYSpeed){
         this.compSpeed.dy = newYSpeed
     }
-    getSpeed(){
+    get getSpeed(){
         return this.speed
     }
-    getXSpeed(){
+    get getXSpeed(){
         return this.compSpeed.dx
     }
-    getYSpeed(){
+    get getYSpeed(){
         return this.compSpeed.dy
     }
 
-    isClicked(click){
-        let left = this.xPos - this.width/2
-        let right = this.xPos + this.width/2
-        let top = this.yPos - this.height/2
-        let bot = this.yPos + this.height/2
 
-        //if mouse is NOT clicked on this piece
-        if (click.x > right || click.x < left || click.y < top || click.y > bot){
-            return false
-        }else {
-            return true
-        }
-    }
+    set setBoundAction(action){
+        this.boundAction = action
+    }//end setBoundAction
 
 
+*/
+//end old functions
 
 }//endSprite
 

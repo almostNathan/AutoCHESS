@@ -1,12 +1,10 @@
 //Nathan Allen
 //AUTOCHESS
-//Final Project CSCI 43700-25633
-//-------
-//BOARD class
-//this will be the main controller of what is displayed in the game. it holds all the sprites and controls them.
+//Player Class
+//  Scene object that manages the players pieces and board.
 
 
-class Board extends Scene{
+class Player extends Scene{
     //parameters
     //width, height = size of board(canvas) in pixels (interface will take up 1/4 of the screen horizontally)
     //cols, rows = number of columns/rows on the chess board (will scale to the size of the board)
